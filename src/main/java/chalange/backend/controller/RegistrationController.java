@@ -28,10 +28,10 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public RedirectView  addNewUser(@ModelAttribute User user, Model model) {
+    public RedirectView  addNewUser(@ModelAttribute User user, Model model) { // todo: use UserDto
         model.addAttribute("user", user);
         userService.save(user);
 
-        return new RedirectView("showRegistrationForm");
+        return new RedirectView("/registration");
     }
 }

@@ -1,19 +1,22 @@
 package chalange.backend.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "posts")
 public class Post extends BaseEntity {
     @Column(name = "content")
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "user_id" , nullable = false)
-    private User UserId;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToMany
     @JoinTable(

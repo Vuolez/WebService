@@ -13,7 +13,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
-@Data
+@Data // todo: избавиться от @Data во всех сущностях, для equals и hashcode использовать реализацию из дискорда
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -40,12 +40,12 @@ public class User extends BaseEntity implements UserDetails  {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "UserId")
+    @OneToMany(mappedBy = "user") // https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
     private List<Post> posts;
 
-    @Transient
+    @Transient // todo: сделать роли сущностью, заимплементить GrantedAuthority. У пользователя может быть несколько ролей
     private List<SimpleGrantedAuthority> authorities;
-    @Transient
+    @Column(name = "is_active")
     private boolean isActive;
 
     @Override
@@ -81,17 +81,5 @@ public class User extends BaseEntity implements UserDetails  {
     @Override
     public boolean isEnabled() {
         return isActive;
-    }
-
-    public static UserDetails toSecurityUser(User user){
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                user.getStatus().equals(Status.ACTIVE),
-                user.getStatus().equals(Status.ACTIVE),
-                user.getStatus().equals(Status.ACTIVE),
-                user.getStatus().equals(Status.ACTIVE),
-                user.getRole().getAuthority()
-        );
     }
 }
