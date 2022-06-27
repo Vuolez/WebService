@@ -1,56 +1,69 @@
 package chalange.backend.entity;
 
-import chalange.backend.model.Role;
+import chalange.backend.model.RoleType;
 import chalange.backend.model.Status;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Data // todo: избавиться от @Data во всех сущностях, для equals и hashcode использовать реализацию из дискорда
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-@NamedEntityGraph(name = "user.posts",
-        attributeNodes = @NamedAttributeNode("posts")
-)
+@Setter
+@Getter
+//@NamedEntityGraph(name = "user.posts.roles",
+//        attributeNodes = {
+//                @NamedAttributeNode("posts"),
+//                @NamedAttributeNode("roles")
+//        }
+//)
 public class User extends BaseEntity implements UserDetails  {
 
     @Column(name = "username")
     private String username;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "role")
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private Status status;
 
-    @OneToMany(mappedBy = "user") // https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
-    private List<Post> posts;
+    @Column(name = "roles")
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private List<Role> roles = new ArrayList<>();
 
-    @Transient // todo: сделать роли сущностью, заимплементить GrantedAuthority. У пользователя может быть несколько ролей
-    private List<SimpleGrantedAuthority> authorities;
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.REMOVE,
+            orphanRemoval = true
+    )
+    // https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
+    private List<Post> posts = new ArrayList<>();
+
     @Column(name = "is_active")
     private boolean isActive;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return roles;
     }
 
     @Override

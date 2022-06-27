@@ -1,9 +1,8 @@
 package chalange.backend.controller;
 
 import chalange.backend.dto.TagDto;
-import chalange.backend.service.TagService;
+import chalange.backend.service.TagServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,11 +16,11 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class TagController {
-    private final TagService tagService;
+    private final TagServiceImpl tagServiceImpl;
 
     @GetMapping
     @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<List<TagDto>> findAll() {
-        return new ResponseEntity<>(tagService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(tagServiceImpl.findAll(), HttpStatus.OK);
     }
 }

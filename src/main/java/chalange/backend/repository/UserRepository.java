@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
-    @EntityGraph(value = "user.posts")
+    @EntityGraph()
     @Query("SELECT u FROM User u")
     List<User> findAllWithPosts();
 
