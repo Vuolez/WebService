@@ -1,7 +1,7 @@
 package chalange.backend.controller;
 
 import chalange.backend.dto.UserDto;
-import chalange.backend.service.UserServiceImpl;
+import chalange.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +18,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class UserConroller {
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
 
     @GetMapping
     @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<List<UserDto>> findAll() {
-        return new ResponseEntity<>(userServiceImpl.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/current")

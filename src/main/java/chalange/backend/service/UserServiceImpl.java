@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,12 +23,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
+    @Transactional
     public List<UserDto> findAll() {
         return userRepository.findAllWithPosts().stream()
                 .map(i -> modelMapper.map(i, UserDto.class))
                 .collect(Collectors.toList());
     }
 
+    @Override
     public void save(UserDto userDto) { // todo: принимает дто, мапит в сущность
         User user = new User();
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));

@@ -1,10 +1,9 @@
 package chalange.backend.controller;
 
 import chalange.backend.dto.UserDto;
-import chalange.backend.entity.User;
 import chalange.backend.model.RoleType;
 import chalange.backend.service.RoleService;
-import chalange.backend.service.UserServiceImpl;
+import chalange.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userService;
     private final RoleService roleService;
 
     @GetMapping
@@ -34,7 +33,7 @@ public class RegistrationController {
     @PostMapping
     public RedirectView  addNewUser(@ModelAttribute UserDto userDto, Model model) { // todo: use UserDto
         userDto.setRoles(List.of(roleService.findRoleByRoleType(RoleType.USER)));
-        userServiceImpl.save(userDto);
+        userService.save(userDto);
 
 
         return new RedirectView("/registration");
