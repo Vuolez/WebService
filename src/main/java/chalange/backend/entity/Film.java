@@ -25,9 +25,9 @@ public class Film extends BaseEntity {
     private String info;
 
     @Column(name = "won")
-    private boolean won;
+    private boolean isWon;
 
-    public boolean getWon() {
-        return won;
+    public boolean getIsWon() {
+        return isWon;
     }
 }

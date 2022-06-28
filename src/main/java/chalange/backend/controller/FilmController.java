@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 public class FilmController {
     private final FilmService filmService;
 
-    @GetMapping
-    public ResponseEntity<Boolean> isBestPicture(@RequestParam String name) throws Exception {
+    @GetMapping // todo: добавить конкретный маппинг
+    public ResponseEntity<Boolean> isBestPicture(@RequestParam String name) throws Exception { // todo: добавить валидацию (минимум символов), возвращать 400, если валидация нарушена
         return ResponseEntity.ok(filmService.isBestPicture(name));
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class) // todo: перенести в класс c @ControllerAdvice, возвращать 500
     public ResponseEntity<String> handleException(Exception e) {
         return ResponseEntity.ok(e.getMessage());
     }
