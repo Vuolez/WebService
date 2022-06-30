@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/films")
 public class FilmController {
     private final FilmService filmService;
-    private final int reqestMinLen = 1;
+    private final int requestMinLen = 1; // todo: через @Value
 
     @GetMapping("/isBestPicture")
-    public ResponseEntity<Boolean> isBestPicture(@RequestParam String name) throws Exception {
-        if (name.length() < reqestMinLen) {
+    public ResponseEntity<Boolean> isBestPicture(@RequestParam String name) throws Exception { // todo: контроллеры не могут выбрасывать иключения
+        if (name.length() < requestMinLen) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(filmService.isBestPicture(name));
