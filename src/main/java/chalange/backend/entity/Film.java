@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "films")
 public class Film extends BaseEntity {
     @Column(name = "year")
-    private String year;
+    private int year;
 
     @Column(name = "category")
     private String category;

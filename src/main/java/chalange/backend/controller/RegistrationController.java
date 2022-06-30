@@ -31,7 +31,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public RedirectView  addNewUser(@ModelAttribute UserDto userDto, Model model) { // todo: use UserDto
+    public RedirectView  addNewUser(@ModelAttribute UserDto userDto, Model model) {
         userDto.setRoles(List.of(roleService.findRoleByRoleType(RoleType.USER)));
         userService.save(userDto);
 

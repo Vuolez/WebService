@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public void save(UserDto userDto) { // todo: принимает дто, мапит в сущность
+    public void save(UserDto userDto) {
         User user = new User();
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setActive(true);
