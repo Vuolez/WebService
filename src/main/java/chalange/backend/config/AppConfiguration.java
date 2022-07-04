@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class AppConfiguration {
-    private static final String BASE_URL = "https://www.omdbapi.com";
     private static final Integer TIMEOUT = 1000;
 
     @Bean
@@ -41,7 +40,6 @@ public class AppConfiguration {
                 });
 
         return WebClient.builder()
-                .baseUrl(BASE_URL)
                 .clientConnector(new ReactorClientHttpConnector(HttpClient.from(tcpClient)))
                 .build();
     }

@@ -1,3 +1,11 @@
+create table "playerInfo".film_rating
+(
+    film_id bigserial not null,
+    user_id bigserial not null,
+    rating  int4,
+    primary key (film_id, user_id)
+);
+
 create table "playerInfo".films
 (
     id       bigserial not null,
@@ -39,7 +47,7 @@ create table "playerInfo".tags
 
 create table "playerInfo".users
 (
-    id         bigserial not null,
+    id         bigserial    not null,
     email      varchar(255),
     first_name varchar(255),
     is_active  boolean,
@@ -57,20 +65,20 @@ create table "playerInfo".users_roles
 
 alter table "playerInfo".posts
     add constraint FK5lidm6cqbc7u4xhqpxm898qme
-    foreign key (user_id) references "playerInfo".users;
+        foreign key (user_id) references "playerInfo".users;
 
 alter table "playerInfo".posts_tags
     add constraint FK4svsmj4juqu2l8yaw6whr1v4v
-    foreign key (tag_id) references "playerInfo".tags;
+        foreign key (tag_id) references "playerInfo".tags;
 
 alter table "playerInfo".posts_tags
     add constraint FKcreclgob71ibo58gsm6l5wp6
-    foreign key (post_id) references "playerInfo".posts;
+        foreign key (post_id) references "playerInfo".posts;
 
 alter table "playerInfo".users_roles
     add constraint FKj6m8fwv7oqv74fcehir1a9ffy
-    foreign key (role_id) references "playerInfo".roles;
+        foreign key (role_id) references "playerInfo".roles;
 
 alter table "playerInfo".users_roles
     add constraint FK2o0jvgh89lemvvo17cbqvdxaa
-    foreign key (user_id) references "playerInfo".users;
+        foreign key (user_id) references "playerInfo".users;

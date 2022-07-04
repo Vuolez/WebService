@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
-    List<Film> findByNominee(final String name);
 
     boolean existsByNomineeAndIsWonTrue(String name);
 }

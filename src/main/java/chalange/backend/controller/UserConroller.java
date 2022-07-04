@@ -21,7 +21,6 @@ public class UserConroller {
     private final UserService userService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<List<UserDto>> findAll() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
