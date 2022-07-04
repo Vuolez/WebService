@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface FilmRatingRepository extends JpaRepository<FilmRating, FilmRatingPk> {
     List<FilmRating> findAllByOrderByRatingDesc(Pageable limit);
+    List<FilmRating> findAllByOrderByRatingDesc();
 }
