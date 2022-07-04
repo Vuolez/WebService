@@ -3,9 +3,9 @@ package chalange.backend.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,7 +27,16 @@ public class Film extends BaseEntity {
     @Column(name = "won")
     private boolean isWon;
 
-    public boolean getIsWon() {
+    @Column(name = "ratings")
+    @OneToMany(mappedBy = "film")
+    private List<FilmRating> ratings = new ArrayList<>();
+
+    public Boolean getIsWon() {
         return isWon;
+    }
+
+    public Double getAverageRating(){
+        double sum = ratings.stream().mapToInt(i -> i.getRating()).sum();
+        return sum / ratings.size();
     }
 }

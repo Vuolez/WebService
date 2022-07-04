@@ -55,8 +55,10 @@ public class User extends BaseEntity implements UserDetails  {
             cascade = CascadeType.REMOVE,
             orphanRemoval = true
     )
-    // https://vladmihalcea.com/the-best-way-to-map-a-onetomany-association-with-jpa-and-hibernate/
     private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<FilmRating> ratings = new ArrayList<>();
 
     @Column(name = "is_active")
     private boolean isActive;

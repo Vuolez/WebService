@@ -1,6 +1,7 @@
 package chalange.backend.controller;
 
-import chalange.backend.entity.FilmRating;
+import chalange.backend.dto.FilmDto;
+import chalange.backend.entity.Film;
 import chalange.backend.entity.User;
 import chalange.backend.service.FilmRatingService;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +20,13 @@ public class FilmRatingController {
 
     @GetMapping("/setRating")
     public void setRating(@AuthenticationPrincipal User user, @RequestParam Long filmId, @RequestParam int rating){
-        filmRatingService.setRating(user.getId(),filmId, rating);
+        filmRatingService.setRating(user,filmId, rating);
     }
 
 
 
     @GetMapping("/getTopRatedMovies")
-    public ResponseEntity<List<FilmRating>> getTopRatedMovies(@RequestParam int count){
+    public ResponseEntity<List<FilmDto>> getTopRatedMovies(@RequestParam int count){
         return ResponseEntity.ok(filmRatingService.getTopRatedMovies(count));
     }
 }

@@ -1,11 +1,12 @@
 package chalange.backend.entity.pk;
 
+import chalange.backend.entity.Film;
+import chalange.backend.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
@@ -13,12 +14,10 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 public class FilmRatingPk implements Serializable {
-    @Column(name = "user_id")
-    private Long user;
-    @Column(name = "film_id")
-    private Long film;
+    private User user;
+    private Film film;
 
-    public FilmRatingPk(Long user, Long film) {
+    public FilmRatingPk(User user, Film film) {
         this.user = user;
         this.film = film;
     }
