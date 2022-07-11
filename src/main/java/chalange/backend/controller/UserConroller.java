@@ -25,6 +25,11 @@ public class UserConroller {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return new ResponseEntity<>("test", HttpStatus.OK);
+    }
+
     @GetMapping("/current")
     @ResponseBody
     public ResponseEntity<String> currentUserName(Principal principal) {

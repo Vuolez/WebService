@@ -23,8 +23,6 @@ public class FilmRatingController {
         filmRatingService.setRating(user,filmId, rating);
     }
 
-
-
     @GetMapping("/getTopRatedMovies")
     public ResponseEntity<List<FilmDto>> getTopRatedMovies(@RequestParam int count){
         return ResponseEntity.ok(filmRatingService.getTopRatedMovies(count));
