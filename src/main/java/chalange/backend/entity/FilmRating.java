@@ -1,5 +1,6 @@
 package chalange.backend.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "film_rating")
+@AllArgsConstructor
 @NoArgsConstructor
 public class FilmRating extends BaseEntity implements Serializable {
     @ManyToOne
@@ -22,11 +24,5 @@ public class FilmRating extends BaseEntity implements Serializable {
     private Film film;
 
     @Column(name = "rating")
-    private int rating;
-
-    public FilmRating(User user, Film film, int rating){
-        this.user = user;
-        this.film = film;
-        this.rating = rating;
-    };
+    private Integer rating;
 }

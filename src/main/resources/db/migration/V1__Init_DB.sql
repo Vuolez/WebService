@@ -1,9 +1,9 @@
 create table "playerInfo".film_rating
 (
     id      bigserial not null,
-    rating  int4,
-    film_id int8,
-    user_id int8,
+    rating  int4 not null,
+    film_id int8 not null,
+    user_id int8 not null,
     primary key (id)
 );
 create table "playerInfo".films
@@ -14,6 +14,7 @@ create table "playerInfo".films
     won      boolean,
     nominee  varchar(1000),
     year     int4,
+    avg_rating decimal,
     primary key (id)
 );
 create table "playerInfo".posts

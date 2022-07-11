@@ -8,6 +8,7 @@ class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// todo: интеграционные тесты на оба метода в FilmRatingController
 	}
 
 }

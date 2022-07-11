@@ -2,11 +2,6 @@ package chalange.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Getter
