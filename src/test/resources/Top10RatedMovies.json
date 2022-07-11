@@ -1,84 +1,82 @@
-{
-  "objects": [
-    {
-      "id": 3565,
-      "category": "Special Achievement Award",
-      "nominee": "Return of the Jedi",
-      "info": "Richard Edlund, Dennis Muren, Ken Ralston, Phil Tippett",
-      "isWon": true,
-      "averageRating": "NaN"
-    },
-    {
-      "id": 2848,
-      "category": "Writing",
-      "nominee": "When Harry Met Sally...",
-      "info": "Nora Ephron",
-      "isWon": false,
-      "averageRating": "NaN"
-    },
-    {
-      "id": 251,
-      "category": "Writing",
-      "nominee": "Up in the Air",
-      "info": "Screenplay by Jason Reitman and Sheldon Turner",
-      "isWon": false,
-      "averageRating": "NaN"
-    },
-    {
-      "id": 6158,
-      "category": "Music (Scoring)",
-      "nominee": "Paris Blues",
-      "info": "Duke Ellington",
-      "isWon": false,
-      "averageRating": "NaN"
-    },
-    {
-      "id": 6,
-      "category": "Actor -- Supporting Role",
-      "nominee": "Christian Bale",
-      "info": "The Fighter {'Dicky Eklund'}",
-      "isWon": true,
-      "averageRating": 6.5
-    },
-    {
-      "id": 5,
-      "category": "Actor -- Leading Role",
-      "nominee": "James Franco",
-      "info": "127 Hours {'Aron Ralston'}",
-      "isWon": false,
-      "averageRating": 5.0
-    },
-    {
-      "id": 1,
-      "category": "Actor -- Leading Role",
-      "nominee": "Javier Bardem",
-      "info": "Biutiful {'Uxbal'}",
-      "isWon": false,
-      "averageRating": 4.0
-    },
-    {
-      "id": 2,
-      "category": "Actor -- Leading Role",
-      "nominee": "Jeff Bridges",
-      "info": "True Grit {'Rooster Cogburn'}",
-      "isWon": false,
-      "averageRating": 4.0
-    },
-    {
-      "id": 4,
-      "category": "Actor -- Leading Role",
-      "nominee": "Colin Firth",
-      "info": "The King's Speech {'King George VI'}",
-      "isWon": true,
-      "averageRating": 4.0
-    },
-    {
-      "id": 3,
-      "category": "Actor -- Leading Role",
-      "nominee": "Jesse Eisenberg",
-      "info": "The Social Network {'Mark Zuckerberg'}",
-      "isWon": false,
-      "averageRating": 3.0
-    }
-  ]
-}
+[
+  {
+    "id": 3565,
+    "category": "Special Achievement Award",
+    "nominee": "Return of the Jedi",
+    "info": "Richard Edlund, Dennis Muren, Ken Ralston, Phil Tippett",
+    "isWon": true,
+    "averageRating": "NaN"
+  },
+  {
+    "id": 2848,
+    "category": "Writing",
+    "nominee": "When Harry Met Sally...",
+    "info": "Nora Ephron",
+    "isWon": false,
+    "averageRating": "NaN"
+  },
+  {
+    "id": 251,
+    "category": "Writing",
+    "nominee": "Up in the Air",
+    "info": "Screenplay by Jason Reitman and Sheldon Turner",
+    "isWon": false,
+    "averageRating": "NaN"
+  },
+  {
+    "id": 6158,
+    "category": "Music (Scoring)",
+    "nominee": "Paris Blues",
+    "info": "Duke Ellington",
+    "isWon": false,
+    "averageRating": "NaN"
+  },
+  {
+    "id": 6,
+    "category": "Actor -- Supporting Role",
+    "nominee": "Christian Bale",
+    "info": "The Fighter {'Dicky Eklund'}",
+    "isWon": true,
+    "averageRating": 6.5
+  },
+  {
+    "id": 5,
+    "category": "Actor -- Leading Role",
+    "nominee": "James Franco",
+    "info": "127 Hours {'Aron Ralston'}",
+    "isWon": false,
+    "averageRating": 5.0
+  },
+  {
+    "id": 1,
+    "category": "Actor -- Leading Role",
+    "nominee": "Javier Bardem",
+    "info": "Biutiful {'Uxbal'}",
+    "isWon": false,
+    "averageRating": 4.0
+  },
+  {
+    "id": 2,
+    "category": "Actor -- Leading Role",
+    "nominee": "Jeff Bridges",
+    "info": "True Grit {'Rooster Cogburn'}",
+    "isWon": false,
+    "averageRating": 4.0
+  },
+  {
+    "id": 4,
+    "category": "Actor -- Leading Role",
+    "nominee": "Colin Firth",
+    "info": "The King's Speech {'King George VI'}",
+    "isWon": true,
+    "averageRating": 4.0
+  },
+  {
+    "id": 3,
+    "category": "Actor -- Leading Role",
+    "nominee": "Jesse Eisenberg",
+    "info": "The Social Network {'Mark Zuckerberg'}",
+    "isWon": false,
+    "averageRating": 3.0
+  }
+]

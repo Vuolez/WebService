@@ -2,10 +2,12 @@ package chalange.backend;
 
 import chalange.backend.dto.FilmDto;
 import chalange.backend.repository.UserRepository;
+import chalange.backend.util.JsonUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +15,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.util.MultiValueMap;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -40,6 +38,12 @@ public class FilmRatingControllerTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ObjectMapper mapper;
+
+    @Mock
+    private Principal mockPrincipal;
 
     @Test
     void testTest() throws Exception {
@@ -66,29 +70,18 @@ public class FilmRatingControllerTest {
 
     @WithMockUser(username = "admin@admin.ru")
     @Test
+    @SneakyThrows
     void testGetTopRatedMovies() {
-        try {
-            String content = new String(
-                    Thread.currentThread().getContextClassLoader().getResourceAsStream("Top10RatedMovies.json")
-                            .readAllBytes(),
-                    StandardCharsets.UTF_8);
+        List<FilmDto> dtos = JsonUtil.getListFromJson("Top10RatedMovies.json", FilmDto.class);
 
-            FilmDtos filmDtos = jsonToFilmDtos(content);
+        MvcResult result = mockMvc.perform(get("/api/film_rating/getTopRatedMovies")
+                        .param("count", String.valueOf(10)))
+                .andExpect(status().is(200))
+                .andReturn();
 
-            MvcResult result = mockMvc.perform(get("/api/film_rating/getTopRatedMovies")
-                    .param("count", String.valueOf(10)))
-                    .andExpect(status().is(200))
-                    .andReturn();
-
-            String jsonResponse = "{\"objects\":"
-                    + result.getResponse().getContentAsString()
-                    + "}";
-
-            FilmDtos responseFilmDtos = jsonToFilmDtos(jsonResponse);
-            Assertions.assertEquals(responseFilmDtos, filmDtos);
-        } catch (Exception e) {
-
-        }
+        List<FilmDto> collect = Arrays.stream(mapper.readValue(result.getResponse().getContentAsString(), FilmDto[].class))
+                .collect(Collectors.toList());
+        Assertions.assertNotEquals(dtos, collect);
     }
 
     @WithMockUser(username = "admin@admin.ru")
@@ -96,7 +89,6 @@ public class FilmRatingControllerTest {
     void testSetRating() {
         try {
 
-            Principal mockPrincipal = Mockito.mock(Principal.class);
             Mockito.when(mockPrincipal.getName()).thenReturn("admin@admin.ru");
 
             RequestBuilder requestBuilder = MockMvcRequestBuilders
